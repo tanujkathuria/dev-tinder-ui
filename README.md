@@ -13,3 +13,12 @@ npm create vite@latest dev-tinder-ui -- --template react
 # About this app 
 This app is for giving the platform to the developers to connect and do some development together 
 # dev-tinder-ui
+
+# creating a new repo in the github 
+echo "# dev-tinder-ui" >> README.md
+git init
+git add README.md
+git commit -m "first commit"
+git branch -M master
+git remote add origin https://github.com/tanujkathuria/dev-tinder-ui.git
+git push -u origin master
