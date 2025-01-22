@@ -22,3 +22,7 @@ git commit -m "first commit"
 git branch -M master
 git remote add origin https://github.com/tanujkathuria/dev-tinder-ui.git
 git push -u origin master
+
+# ui libraries 
+tailwind css 
+https://daisyui.com/ for the components 
