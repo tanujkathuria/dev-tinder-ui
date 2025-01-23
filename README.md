@@ -26,3 +26,17 @@ git push -u origin master
 # ui libraries 
 tailwind css 
 https://daisyui.com/ for the components 
+
+# to make the login work along with the cors 
+install cors in the back end node js api 
+add the middleware to allow cors origin with origin and credentials true 
+call the post api with withCredential:true
+
+# implement the react redux 
+ npm install @reduxjs/toolkit react-redux --> 1 
+ create a new store --> 2 
+ add the provider in the app.js file and wrap everything iinside the provider --> 3
+ create the slice and export the actions and reducer from there 
+ add the reducer in the store 
+ use selector to get the data in the other component 
+ use dispatcher to dispatch the event to the redux store 
