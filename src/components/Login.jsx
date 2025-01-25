@@ -8,22 +8,33 @@ import { LOGIN_URL } from "../utils/constants";
 const Login = () => {
   const [emailId, setEmailId] = useState("mukesh.ambani@gmail.com");
   const [password, setPassword] = useState("Mukesh@123");
+  const [error, setError] = useState("");
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
   const handleLogin = async () => {
-    axios
-      .post(
-        LOGIN_URL,
-        { emailId, password },
-        {
-          withCredentials: true,
-        }
-      )
-      .then((response) => {
-        dispatch(addUser(response.data));
-        navigate("/");
-      });
+    try {
+      axios
+        .post(
+          LOGIN_URL,
+          { emailId, password },
+          {
+            withCredentials: true,
+          }
+        )
+        .catch((err) => {
+          console.log(err);
+          setError(err.response.data);
+        })
+        .then((response) => {
+          console.log(response.data);
+          dispatch(addUser(response.data));
+          navigate("/");
+        });
+    } catch (err) {
+      console.log(err);
+      setError(err.response.data.message);
+    }
   };
 
   return (
@@ -31,6 +42,7 @@ const Login = () => {
       <div className="card bg-base-300 w-96 shadow-xl">
         <div className="card-body flex">
           <h2 className="card-title justify-center">Login</h2>
+          <p className="text-red-500">{error}</p>
           <div className="p-4 m-2">
             <label className="input input-bordered flex items-center gap-2">
               <svg
@@ -67,6 +79,7 @@ const Login = () => {
               />
             </label>
           </div>
+
           <div className="card-actions justify-center">
             <button className="btn btn-primary" onClick={handleLogin}>
               Login

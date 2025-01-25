@@ -1,8 +1,50 @@
-import { useSelector } from "react-redux";
+import { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { LOGOUT_URL, PROFILE_URL } from "../utils/constants";
+import { addUser, removeUser } from "../utils/userSlice";
+import axios from "axios";
+import { useNavigate, Link } from "react-router-dom";
 
 const Navbar = () => {
   const user = useSelector((store) => store.user);
   console.log(user);
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+
+  const fetchUser = async () => {
+    if (user && user.firstName) return;
+    try {
+      const response = await axios.get(PROFILE_URL, {
+        withCredentials: true,
+      });
+      dispatch(addUser(response.data));
+    } catch (err) {
+      console.log(err);
+      navigate("/login");
+    }
+  };
+
+  const handleLogout = async () => {
+    try {
+      const response = await axios.post(
+        LOGOUT_URL,
+        {},
+        {
+          withCredentials: true,
+        }
+      );
+      if (response.status === 200) {
+        dispatch(removeUser());
+        navigate("/login");
+      }
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
+  useEffect(() => {
+    fetchUser();
+  }, []);
 
   return (
     <div className="navbar bg-base-200">
@@ -40,16 +82,16 @@ const Navbar = () => {
             className="menu menu-sm dropdown-content bg-base-100 rounded-box z-[1] mt-3 w-52 p-2 shadow"
           >
             <li>
-              <a className="justify-between">
+              <Link className="justify-between" to="/profile">
                 Profile
                 <span className="badge">New</span>
-              </a>
+              </Link>
             </li>
             <li>
               <a>Settings</a>
             </li>
             <li>
-              <a>Logout</a>
+              <a onClick={handleLogout}>Logout</a>
             </li>
           </ul>
         </div>
