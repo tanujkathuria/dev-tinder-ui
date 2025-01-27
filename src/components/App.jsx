@@ -5,6 +5,7 @@ import Body from "./Body";
 import Footer from "./Footer";
 import { Provider } from "react-redux";
 import appStore from "../utils/appStore";
+import Profile from "./Profile";
 
 function App() {
   return (
@@ -15,7 +16,7 @@ function App() {
           <Routes>
             <Route path="/" element={<Body />}></Route>
             <Route path="/login" element={<Login />} />
-            <Route path="/profile" element={<div>profiles page </div>} />
+            <Route path="/profile" element={<Profile />} />
             <Route path="/connections" element={<div>connections page </div>} />
           </Routes>
           <Footer />

@@ -7,7 +7,6 @@ import { useNavigate, Link } from "react-router-dom";
 
 const Navbar = () => {
   const user = useSelector((store) => store.user);
-  console.log(user);
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
@@ -49,7 +48,15 @@ const Navbar = () => {
   return (
     <div className="navbar bg-base-200">
       <div className="flex-1">
-        <a className="btn btn-ghost text-xl"> Dev Tinder</a>
+        <a
+          className="btn btn-ghost text-xl"
+          onClick={() => {
+            navigate("/");
+          }}
+        >
+          {" "}
+          Dev Tinder
+        </a>
       </div>
       <div className="flex-none gap-2">
         <div className="form-control">

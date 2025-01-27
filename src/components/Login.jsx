@@ -23,16 +23,13 @@ const Login = () => {
           }
         )
         .catch((err) => {
-          console.log(err);
           setError(err.response.data);
         })
         .then((response) => {
-          console.log(response.data);
           dispatch(addUser(response.data));
           navigate("/");
         });
     } catch (err) {
-      console.log(err);
       setError(err.response.data.message);
     }
   };
