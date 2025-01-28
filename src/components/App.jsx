@@ -6,6 +6,7 @@ import Footer from "./Footer";
 import { Provider } from "react-redux";
 import appStore from "../utils/appStore";
 import Profile from "./Profile";
+import Connections from "./connections";
 
 function App() {
   return (
@@ -17,7 +18,7 @@ function App() {
             <Route path="/" element={<Body />}></Route>
             <Route path="/login" element={<Login />} />
             <Route path="/profile" element={<Profile />} />
-            <Route path="/connections" element={<div>connections page </div>} />
+            <Route path="/connections" element={<Connections />} />
           </Routes>
           <Footer />
         </BrowserRouter>

@@ -7,6 +7,8 @@ import UserCard from "./UserCard";
 
 const Feed = () => {
   const feed = useSelector((store) => store.feed);
+  const loggedInUser = useSelector((store) => store.user);
+  console.log(loggedInUser);
   const dispatch = useDispatch();
 
   const getFeed = async () => {
@@ -15,6 +17,7 @@ const Feed = () => {
       const response = await axios.get(FEED_URL, {
         withCredentials: true,
       });
+      console.log(response.data);
       dispatch(addFeed(response.data));
     } catch (err) {
       console.log(err);
