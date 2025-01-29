@@ -8,6 +8,7 @@ import UserCard from "./UserCard";
 const Connections = () => {
   const dispatch = useDispatch();
   const connections = useSelector((store) => store.connection);
+  const user = useSelector((store) => store.user);
   console.log(connections);
   const fetchConnections = async () => {
     try {
@@ -27,13 +28,20 @@ const Connections = () => {
     <div className="flex-col flex flex-wrap items-center pb-80">
       {connections &&
         connections.map((connection) => {
-          console.log(connection);
-          return (
+          return user._id !== connection.fromUserId._id ? (
             <div key={connection.fromUserId._id} className="my-4">
               <UserCard
                 firstName={connection.fromUserId.firstName}
                 lastName={connection.fromUserId.lastName}
                 photoUrl={connection.fromUserId.photoUrl}
+              ></UserCard>
+            </div>
+          ) : (
+            <div key={connection.toUserId._id} className="my-4">
+              <UserCard
+                firstName={connection.toUserId.firstName}
+                lastName={connection.toUserId.lastName}
+                photoUrl={connection.toUserId.photoUrl}
               ></UserCard>
             </div>
           );
