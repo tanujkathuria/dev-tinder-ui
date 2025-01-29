@@ -29,6 +29,8 @@ const Feed = () => {
   }, []);
 
   const user = feed?.users[0];
+  console.log(user);
+  if (!user) return null;
 
   return (
     <div className="flex justify-center my-10">

@@ -118,15 +118,15 @@ const EditProfile = ({ user }) => {
               </div>
             </div>
           </div>
+          <UserCard
+            firstName={firstName}
+            lastName={lastName}
+            age={age}
+            about={about}
+            gender={gender}
+            photoUrl={photoUrl}
+          ></UserCard>
         </div>
-        <UserCard
-          firstName={firstName}
-          lastName={lastName}
-          age={age}
-          about={about}
-          gender={gender}
-          photoUrl={photoUrl}
-        ></UserCard>
       </>
     );
   }
